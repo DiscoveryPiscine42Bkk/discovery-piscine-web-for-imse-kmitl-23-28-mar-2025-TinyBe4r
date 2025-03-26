@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .calculator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #3498db;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="number" id="leftOperand" placeholder="Left Operand (positive integer)" min="0">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="number" id="rightOperand" placeholder="Right Operand (positive integer)" min="0">
+        <input type="submit" value="Try me!" onclick="calculate()">
+    </div>
+
+    <script>
+        // Function to execute the calculation
+        function calculate() {
+            // Get values from inputs
+            const leftOperand = parseInt(document.getElementById('leftOperand').value);
+            const operator = document.getElementById('operator').value;
+            const rightOperand = parseInt(document.getElementById('rightOperand').value);
+
+            // Validate the inputs
+            if (isNaN(leftOperand) || isNaN(rightOperand) || leftOperand < 0 || rightOperand < 0) {
+                alert('Error :(');
+                return;
+            }
+
+            // Handle division or modulo by zero
+            if ((operator === '/' || operator === '%') && rightOperand === 0) {
+                alert("It’s over 9000!");
+                return;
+            }
+
+            // Perform the calculation
+            let result;
+            switch (operator) {
+                case '+':
+                    result = leftOperand + rightOperand;
+                    break;
+                case '-':
+                    result = leftOperand - rightOperand;
+                    break;
+                case '*':
+                    result = leftOperand * rightOperand;
+                    break;
+                case '/':
+                    result = leftOperand / rightOperand;
+                    break;
+                case '%':
+                    result = leftOperand % rightOperand;
+                    break;
+                default:
+                    alert('Invalid operator');
+                    return;
+            }
+
+            // Display the result in an alert
+            alert('Result: ' + result);
+
+            // Log the result to the console
+            console.log('Result: ' + result);
+        }
+
+        // Function to show periodic reminder every 30 seconds
+        setInterval(() => {
+            alert('Please, use me...');
+        }, 30000);
+    </script>
+
+</body>
+</html>
