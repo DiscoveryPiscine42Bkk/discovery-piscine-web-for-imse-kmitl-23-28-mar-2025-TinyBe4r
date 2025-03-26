@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Click</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="balloon"></div>
+
+    <script>
+        let balloon = document.getElementById('balloon');
+        let colors = ['red', 'green', 'blue'];
+        let currentColorIndex = 0;
+
+        balloon.addEventListener('click', () => {
+            let currentSize = parseInt(window.getComputedStyle(balloon).width);
+            
+            // Increase size by 10px if it's less than 420px
+            if (currentSize < 420) {
+                balloon.style.width = `${currentSize + 10}px`;
+                balloon.style.height = `${currentSize + 10}px`;
+            } else {
+                balloon.style.width = '200px';
+                balloon.style.height = '200px';
+            }
+
+            // Change color in order (red -> green -> blue -> red)
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            balloon.style.backgroundColor = colors[currentColorIndex];
+        });
+
+        balloon.addEventListener('mouseleave', () => {
+            let currentSize = parseInt(window.getComputedStyle(balloon).width);
+
+            // Shrink size by 5px but not below 200px
+            if (currentSize > 200) {
+                balloon.style.width = `${currentSize - 5}px`;
+                balloon.style.height = `${currentSize - 5}px`;
+            }
+
+            // Reverse color order (red <- green <- blue <- red)
+            currentColorIndex = (currentColorIndex - 1 + colors.length) % colors.length;
+            balloon.style.backgroundColor = colors[currentColorIndex];
+        });
+    </script>
+
+</body>
+</html>
