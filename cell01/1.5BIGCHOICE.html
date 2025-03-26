@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Table</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: lightgray;
+        }
+        table {
+            width: 90%;
+            height: 80vh;
+            border-collapse: collapse;
+        }
+        td {
+            width: 50%;
+            text-align: center;
+            font-size: 2vw; /* Scales text with screen size */
+            font-weight: bold;
+            color: white;
+            border: 3px solid black;
+            padding: 5%;
+        }
+        .box1 {
+            background-color: royalblue;
+        }
+        .box2 {
+            background-color: tomato;
+        }
+        /* Make it stack on smaller screens */
+        @media (max-width: 600px) {
+            table {
+                height: 100vh;
+            }
+            td {
+                display: block;
+                width: 100%;
+                padding: 10%;
+                font-size: 5vw; /* Increase text size for small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td class="box1">yes</td>
+            <td class="box2">no</td>
+        </tr>
+    </table>
+
+</body>
+</html>
